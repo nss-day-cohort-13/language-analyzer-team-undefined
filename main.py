@@ -8,9 +8,9 @@ class Msg:
         self.word_count = 0
         self.tokenize_text(self.text)
 
-        self.sentiment = list()
-        self.behavior = list()
-        self.domain = list()
+        self.sentiments = list()
+        self.behaviors = list()
+        self.domains = list()
 
     def tokenize_text(self, block):
         tokenizer = WordTokenizer()
