@@ -1,6 +1,5 @@
+behaviorDict = {
 
-
-behavior_dict = {
   # Aggressive
   ('military', 'extreme', 'confident', 'angry', 'evil', 'republican', 'cruel', 'cocky', 'strong', 'persistent', 'oppressive', 'wielded', 'conflict', 'cruelty', 'action', 'war', 'desire', 'oppression', 'impact', 'demand', 'raid', 'ruin', 'challenge', 'battle', 'argument'):'aggressive',
 
@@ -23,7 +22,7 @@ behavior_dict = {
   ('similar', 'possible', 'many', 'new', 'little', 'widespread', 'last', 'much', 'different', 'able', 'many', 'absurd', 'richest', 'best', 'least', 'greatest', 'increase', 'relationship'):'comparison',
 
   # Spiritual
-  ('spiritual', 'emotional', 'self-knowledge', 'personal', 'love', 'belief', 'soul', 'journey', 'creation', 'freedom', 'emotion', 'dream', 'miracle', 'blessing', 'passion'):'spiritual'
+  ('spiritual', 'emotional', 'self-knowledge', 'personal', 'love', 'belief', 'soul', 'journey', 'creation', 'freedom', 'emotion', 'dream', 'miracle', 'blessing', 'passion'):'spiritual',
 
   # Frustration
   ('negative', 'overwhelming', 'hard', 'depressed', 'doubtful', 'terrible', 'sorry', 'judgmental', 'morbid', 'foolish', 'tortured', 'sickened', 'vexation', 'disappointment', 'trouble', 'resistance', 'ruin', 'job', 'challenge', 'negativity', 'misdeed'):'frustration'
