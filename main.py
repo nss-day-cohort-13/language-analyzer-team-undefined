@@ -10,7 +10,9 @@ class Msg:
         self.behaviors = list()
         self.domains = list()
         self.analyze = Analyze()
+        
         self.tokenize_text(self.text)
+        self.add_msg_sentiment(self.analyze.analyze_sentiment(self.text))
 
     def tokenize_text(self, block):
         tokenizer = WordTokenizer()
@@ -28,8 +30,8 @@ class Msg:
         self.domains.append(new_domain)
 
 class Analyze:
-    def analyze_sentiment(self, word_list):
-        pass
+    def analyze_sentiment(self, text):
+        return TextBlob(text).sentiment
 
     def analyze_behavior(self, word_list):
         pass
