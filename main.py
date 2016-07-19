@@ -6,11 +6,11 @@ class Msg:
         self.text = text
         self.words = None
         self.word_count = 0
-        self.tokenize_text(self.text)
-
         self.sentiments = list()
         self.behaviors = list()
         self.domains = list()
+        self.analyze = Analyze()
+        self.tokenize_text(self.text)
 
     def tokenize_text(self, block):
         tokenizer = WordTokenizer()
@@ -18,6 +18,16 @@ class Msg:
         self.words = token
         self.word_count = len(token)
 
+    def add_msg_sentiment(self, new_sentiment):
+        self.sentiments.append(new_sentiment)
+
+    def add_msg_behavior(self, new_behavior):
+        self.behaviors.append(new_behavior)
+
+    def add_msg_domain(self, new_domain):
+        self.domains.append(new_domain)
+
+class Analyze:
     def analyze_sentiment(self, word_list):
         pass
 
