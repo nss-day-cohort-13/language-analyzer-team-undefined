@@ -59,14 +59,14 @@ class TestAnalyze(unittest.TestCase):
         text = "The main courses were good, but the desserts were too sweet."
         message = main.Msg(text).words
         behaviors = analyze.analyze_behavior(message)
-        self.assertListEqual(behaviors, ["encouragement", "encouragement"])
+        self.assertListEqual(behaviors, [{1.0, 'encouragement'}])
 
     def test_analyze_domain(self):
         analyze = main.Analyze()
         text = "The main courses were good, but the desserts were too sweet."
         message = main.Msg(text).words
         domains = analyze.analyze_domain(message)
-        self.assertListEqual(domains, ["behavioral",])
+        self.assertListEqual(domains, [{1.0, 'behavioral'}])
 
 
 class TestLexicons(unittest.TestCase):
