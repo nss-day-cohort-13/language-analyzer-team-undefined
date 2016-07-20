@@ -75,10 +75,33 @@ class Analyze:
 
         resultList = list()
 
+        # for word in word_list:
+        #     for key in behaviorDict:
+        #         if word in key:
+        #             resultList.append(behaviorDict[key])
+
+        denominator = 0
+
+        resultDict = dict()  # Make a temporary dictionary
+
         for word in word_list:
-            for key in behaviorDict:
-                if word in key:
-                    resultList.append(behaviorDict[key])
+
+            for key in behaviorDict:  # test to see if a dictionary entry already exists
+
+                if word in key:  # if word is found in the key
+
+                    denominator += 1
+
+                    # if word exists, update the dictionary to show another occurance of it.
+                    if (behaviorDict[key] in resultDict):
+                        resultDict[behaviorDict[key]] += 1
+
+                    else:  # if not create one
+                        resultDict[behaviorDict[key]] = 1
+                        # print(resultDict[behaviorDict[key]])
+
+        for key in resultDict:
+            resultList.append({key, round(resultDict[key] / denominator, 4)})
 
         return resultList
 
@@ -90,9 +113,32 @@ class Analyze:
 
         resultList = list()
 
+        denominator = 0
+
+        resultDict = dict()  # Make a temporary dictionary
+
         for word in word_list:
-            for key in domainDict:
-                if word in key:
-                    resultList.append(domainDict[key])
+
+            for key in domainDict:  # test to see if a dictionary entry already exists
+
+                if word in key:  # if word is found in the key
+
+                    denominator += 1
+
+                    # if word exists, update the dictionary to show another occurance of it.
+                    if (domainDict[key] in resultDict):
+                        resultDict[domainDict[key]] += 1
+
+                    else:  # if not create one
+                        resultDict[domainDict[key]] = 1
+                        # print(resultDict[behaviorDict[key]])
+
+        for key in resultDict:
+            resultList.append({key, round(resultDict[key] / denominator, 4)})
+
+        # for word in word_list:
+        #     for key in domainDict:
+        #         if word in key:
+        #             resultList.append(domainDict[key])
 
         return resultList
