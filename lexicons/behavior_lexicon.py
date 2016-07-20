@@ -4,7 +4,7 @@ behaviorDict = {
     ('military', 'extreme', 'confident', 'angry', 'evil', 'republican', 'cruel', 'cocky',
         'strong', 'persistent', 'oppressive', 'wielded', 'conflict', 'cruelty', 'action',
         'war', 'desire', 'oppression', 'impact', 'demand', 'raid', 'ruin', 'challenge',
-        'battle', 'argument'): 'aggressive',
+        'battle', 'argument', '!'): 'aggressive',
 
     # Passive
     ('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing'): 'passive',
@@ -17,7 +17,7 @@ behaviorDict = {
     ('interesting', 'psychological', 'sensible', 'truth', 'exploration', 'opinion',
         'evidence', 'intelligence', 'wonder', 'fact', 'mind', 'conclusion', 'study',
         'interest', 'mind', 'meaning', 'assumption', 'idea', 'experiment', 'debate',
-        'thought'): 'inquisitive',
+        'thought', 'who', 'what', 'when', 'where', 'why', 'how', '?'): 'inquisitive',
 
     # Transaction
     ('generous', 'lucky', 'worth', 'honored', 'filled', 'rewarded', 'satisfied',
