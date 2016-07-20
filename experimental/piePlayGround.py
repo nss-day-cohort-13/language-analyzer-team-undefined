@@ -15,7 +15,9 @@ def piePlot():
 
     domains = analyze.analyze_domain(message)
     print(domains)
-    
+
+    for tup in behaviors:
+        print(tup[1])
 if __name__ == '__main__':
     piePlot()
 

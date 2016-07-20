@@ -103,7 +103,7 @@ class Analyze:
                         # print(resultDict[behaviorDict[key]])
 
         for key in resultDict:
-            resultList.append({key, round(resultDict[key] / denominator, 4)})
+            resultList.append((key, round(resultDict[key] / denominator, 4)))
 
         return resultList
 
@@ -136,7 +136,7 @@ class Analyze:
                         # print(resultDict[behaviorDict[key]])
 
         for key in resultDict:
-            resultList.append({key, round(resultDict[key] / denominator, 4)})
+            resultList.append((key, round(resultDict[key] / denominator, 4)))
 
         # for word in word_list:
         #     for key in domainDict:
