@@ -35,12 +35,12 @@ class TestAnalyze(unittest.TestCase):
         self.assertEqual(str(sentiment_test), 'Sentiment(polarity=0.4055555555555555, subjectivity=0.5277777777777778)')
 
     def test_analize_behavior(self):
-        analyze = Analyze()
+        analyze = main.Analyze()
         behaviors = analyze.analyze_behavior("The main courses were good, but the desserts were too sweet")
         self.assertListEqual(behaviors, ["encouragement", "encouragement"])
 
     def test_analize_domain(self):
-        analyze = Analyze()
+        analyze = main.Analyze()
         domains = analyze.analyze_domain("The main courses were good, but the desserts were too sweet")
         self.assertListEqual(domains, ["behavioral",])
 
