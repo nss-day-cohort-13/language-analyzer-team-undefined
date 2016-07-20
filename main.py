@@ -34,6 +34,7 @@ class Msg:
         token = tokenizer.tokenize(block)
         self.words = token
         self.word_count = len(token)
+        return token
 
     def add_msg_sentiment(self, new_sentiment):
         '''
