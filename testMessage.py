@@ -30,10 +30,14 @@ class TestAnalyze(unittest.TestCase):
         pass
 
     def test_analize_behavior(self):
-        pass
+        analyze = Analyze()
+        behaviors = analyze.analyze_behavior("The main courses were good, but the desserts were too sweet")
+        self.assertListEqual(behaviors, ["encouragement", "encouragement"])
 
     def test_analize_domain(self):
-        pass
+        analyze = Analyze()
+        domains = analyze.analyze_domain("The main courses were good, but the desserts were too sweet")
+        self.assertListEqual(domains, ["behavioral",])
 
 
 
