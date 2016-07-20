@@ -1,5 +1,6 @@
 import unittest
 import main
+import textblob
 
 class TestMessage(unittest.TestCase):
 
@@ -36,16 +37,17 @@ class TestAnalyze(unittest.TestCase):
 
     def test_analize_behavior(self):
         analyze = main.Analyze()
-        behaviors = analyze.analyze_behavior("The main courses were good, but the desserts were too sweet")
+        text = "The main courses were good, but the desserts were too sweet."
+        message = main.Msg(text).words
+        behaviors = analyze.analyze_behavior(message)
         self.assertListEqual(behaviors, ["encouragement", "encouragement"])
 
     def test_analize_domain(self):
         analyze = main.Analyze()
-        domains = analyze.analyze_domain("The main courses were good, but the desserts were too sweet")
+        text = "The main courses were good, but the desserts were too sweet."
+        message = main.Msg(text).words
+        domains = analyze.analyze_domain(message)
         self.assertListEqual(domains, ["behavioral",])
-
-
-
 
 
 if __name__ == '__main__':

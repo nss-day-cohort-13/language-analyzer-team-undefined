@@ -10,7 +10,7 @@ domainDict = {
     #  Behavioral
     ('interesting', 'unique', 'funny', 'cautious', 'sweet', 'hopeful', 'spiritual',
         'negative', 'generous', 'positive', 'confident', 'angry', 'fearful', 'depressed',
-        'doubtful', 'terrible', 'evil', , 'inspiring', 'cruel', 'cocky', 'happy',
+        'doubtful', 'terrible', 'evil', 'inspiring', 'cruel', 'cocky', 'happy',
         'sensible', 'judgmental', 'emotional', 'enthusiasm', 'passions', 'thoughts'
         'eager', 'morbid', 'absurd', 'persistent', 'oppressive', 'foolish', 'satisfied',
         'drug', 'happiness', 'fear', 'cruelty', 'desire', 'ability', 'decision',
