@@ -25,6 +25,8 @@ class Msg:
 
         self.tokenize_text(self.text)
         self.add_msg_sentiment(self.analyze.analyze_sentiment(self.text))
+        self.add_msg_behavior(self.analyze.analyze_behavior(self.words))
+        self.add_msg_domain(self.analyze.analyze_domain(self.words))
 
     def tokenize_text(self, block):
         '''

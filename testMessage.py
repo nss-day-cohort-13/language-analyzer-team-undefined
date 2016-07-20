@@ -28,8 +28,9 @@ class TestMessage(unittest.TestCase):
 
     def test_add_msg_behavior(self):
         # new instance of Msg created to test that behavior begins as empty list
-        message = main.Msg("AMain courses were good, but the desserts were too sweet.")
-        self.assertListEqual(list(), message.behaviors)
+        message = main.Msg("Main courses were good, but the desserts were too sweet.")
+        # self.assertListEqual(list(), message.behaviors)
+        message.behaviors = list()
         message.add_msg_behavior("happy")
         self.assertListEqual(["happy"], message.behaviors)
 
@@ -41,7 +42,7 @@ class TestMessage(unittest.TestCase):
     def test_add_msg_domain(self):
         # new instance of Msg created to test that behavior begins as empty list
         message = main.Msg("Main courses were good, but the desserts were too sweet.")
-        self.assertListEqual(list(), message.domains)
+        message.domains = list()
         message.add_msg_domain("happy")
         self.assertListEqual(["happy"], message.domains)
 
