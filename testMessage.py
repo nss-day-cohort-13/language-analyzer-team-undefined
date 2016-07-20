@@ -16,7 +16,8 @@ class TestMessage(unittest.TestCase):
         self.assertListEqual(message.words, ["Main", "courses", "were", "good", ",", "but", "the", "desserts", "were", "too", "sweet", "."])
 
     def test_add_msg_behavior(self):
-        message = main.Msg("a")
+        # new instance of Msg created to test that behavior begins as empty list
+        message = main.Msg("AMain courses were good, but the desserts were too sweet.")
         self.assertListEqual(list(), message.behaviors)
         message.add_msg_behavior("happy")
         self.assertListEqual(["happy"], message.behaviors)
@@ -27,7 +28,8 @@ class TestMessage(unittest.TestCase):
         self.assertEqual(str(message.sentiments), "[Sentiment(polarity=0.4055555555555555, subjectivity=0.5277777777777778)]")
 
     def test_add_msg_domain(self):
-        message = main.Msg("a")
+        # new instance of Msg created to test that behavior begins as empty list
+        message = main.Msg("Main courses were good, but the desserts were too sweet.")
         self.assertListEqual(list(), message.domains)
         message.add_msg_domain("happy")
         self.assertListEqual(["happy"], message.domains)
