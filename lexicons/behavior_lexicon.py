@@ -7,23 +7,23 @@ behaviorDict = {
         'battle', 'argument', 'Patrick', '!', 'hate', 'fuck'): 'aggressive',
 
     # Passive
-    ('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic'): 'passive',
+    ('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic', 'wish'): 'passive',
 
     # Mentoring
     ('inspiring', 'respect', 'share', 'development', 'ability', 'opinion', 'role',
-        'teaching', 'Steve', 'coach', 'counsel', 'guide', 'instruct', 'edify', 'educate', 'explain', 'teach', 'tutor', 'aid', 'champion', 'help', 'sponsor'): 'mentoring',
+        'teaching', 'Steve', 'coach', 'counsel', 'guide', 'instruct', 'edify', 'educate', 'explain', 'teach', 'tutor', 'aid', 'champion', 'help', 'sponsor', 'friend', 'wise', 'advice'): 'mentoring',
 
     # Inquisitive
     ('interest', 'psychological', 'sensible', 'truth', 'exploration', 'opinion',
         'evidence', 'intelligence', 'wonder', 'fact', 'mind', 'conclusion', 'study',
         'interest', 'Ryan', 'mind', 'meaning', 'assumption', 'idea', 'experiment', 'debate',
-        'thought', 'who', 'what', 'when', 'where', 'why', 'how', '?', 'analytical', 'nosy', 'investigate', 'scrutinize', 'pry', 'learn'): 'inquisitive',
+        'thought', 'who', 'what', 'when', 'where', 'why', 'how', '?', 'analytical', 'nosy', 'investigate', 'scrutinize', 'pry', 'learn', 'seek', 'discover', 'curiosity'): 'inquisitive',
 
     # Transaction
     ('generous', 'lucky', 'worth', 'honored', 'filled', 'rewarded', 'satisfied',
         'attainment', 'promise', 'opportunity', 'goal', 'offer', 'credit', 'money',
         'gain', 'proceeding', 'share', 'job', 'service', 'experiment', 'task',
-        'relation', 'retrieve', 'validate', 'livelihood', 'action', 'bond', 'business', 'buying','contract', 'deal', 'enterprise', 'negotiation', 'purchase', 'sale', 'bargain', 'compact', 'convention', 'deed'): 'transaction',
+        'relation', 'retrieve', 'validate', 'livelihood', 'action', 'bond', 'business', 'buying','contract', 'deal', 'enterprise', 'negotiation', 'purchase', 'sale', 'bargain', 'compact', 'convention', 'deed', 'change'): 'transaction',
 
     # Encouragement
     ('funny', 'sweet', 'good', 'positive', 'Charisse' 'great', 'happy', 'eager', 'greatest',
@@ -33,7 +33,7 @@ behaviorDict = {
     # Comparison
     ('similar', 'possible', 'many', 'new', 'little', 'widespread', 'last', 'much',
         'different', 'able', 'many', 'absurd', 'richest', 'best', 'least', 'greatest',
-        'increase', 'relationship', 'resemblance', 'semblance', 'likeness', 'relation', 'like', 'near', 'far', 'above', 'below', 'under', 'top', 'bottom', 'close', 'but', 'never', 'always'): 'comparison',
+        'increase', 'relationship', 'resemblance', 'semblance', 'likeness', 'relation', 'like', 'near', 'far', 'above', 'below', 'under', 'top', 'bottom', 'close', 'but', 'never', 'always', 'judgement', 'before', 'after', 'long', 'short'): 'comparison',
 
     # Spiritual
     ('spiritual', 'emotional', 'self-knowledge', 'personal', 'love', 'belief', 'soul',
@@ -44,5 +44,5 @@ behaviorDict = {
     ('negative', 'overwhelming', 'hard', 'depressed', 'doubtful', 'terrible', 'sorry',
         'judgmental', 'morbid', 'foolish', 'tortured', 'sickened', 'vexation', 'misdeed',
         'disappointment', 'trouble', 'resistance', 'ruin', 'job', 'challenge',
-        'negativity', 'failure', 'dissatisfaction', 'irritation', 'resentment', 'setback', 'hindrance', 'Sule', 'impediment', 'defeat', 'obstruction', 'downer', 'disaster', 'dismay', 'upset', 'humiliation', 'vexation'): 'frustration'
+        'negativity', 'failure', 'dissatisfaction', 'irritation', 'resentment', 'setback', 'hindrance', 'Sule', 'impediment', 'defeat', 'obstruction', 'downer', 'disaster', 'dismay', 'upset', 'humiliation', 'vexation', 'worry', 'fear', 'bad'): 'frustration'
 }
