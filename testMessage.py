@@ -60,7 +60,7 @@ class TestAnalyze(unittest.TestCase):
         text = "The main courses were good, but the desserts were too sweet."
         message = main.Msg(text).words
         behaviors = analyze.analyze_behavior(message)
-        self.assertListEqual(behaviors, [('encouragement', 1.0)])
+        self.assertListEqual(behaviors, [('comparison', 0.3333), ('encouragement', 0.6667)])
 
     def test_analyze_domain(self):
         analyze = main.Analyze()
@@ -76,19 +76,22 @@ class TestLexicons(unittest.TestCase):
         self.assertIsInstance(behaviorDict, dict)
 
     def test_behaviorDict_contains_key(self):
-        self.assertIn(('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic'), behaviorDict)
+        self.assertIn(('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic', 'wish'), behaviorDict)
 
     def test_behaviorDict_contains_value(self):
-        self.assertEqual(behaviorDict[('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic')], 'passive')
+        self.assertEqual(behaviorDict[('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic', 'wish')], 'passive')
 
     def test_domainDict_is_dictionary(self):
         self.assertIsInstance(domainDict, dict)
 
     def test_domainDict_contains_key(self):
-        self.assertIn(('date', 'day', 'time', 'minute', 'today', 'night', 'moment', 'year'), domainDict)
+        self.assertIn(('date', 'day', 'time', 'minute', 'today', 'night', 'moment', 'year', 'calender',
+            'clock', 'hour', 'noon', 'midnight', 'afternoon', 'tonight', 'tomorrow',
+            'morning', 'week', 'month'), domainDict)
 
     def test_domainDict_contains_value(self):
-        self.assertEqual(domainDict[('date', 'day', 'time', 'minute', 'today', 'night', 'moment', 'year')], "time")
+        self.assertEqual(domainDict[('date', 'day', 'time', 'minute', 'today', 'night', 'moment', 'year', 'calender', 'clock', 'hour', 'noon', 'midnight', 'afternoon', 'tonight', 'tomorrow',
+            'morning', 'week', 'month')], "time")
 
 
 if __name__ == '__main__':
