@@ -76,10 +76,10 @@ class TestLexicons(unittest.TestCase):
         self.assertIsInstance(behaviorDict, dict)
 
     def test_behaviorDict_contains_key(self):
-        self.assertIn(('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing'), behaviorDict)
+        self.assertIn(('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic'), behaviorDict)
 
     def test_behaviorDict_contains_value(self):
-        self.assertEqual(behaviorDict[('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing')], 'passive')
+        self.assertEqual(behaviorDict[('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic')], 'passive')
 
     def test_domainDict_is_dictionary(self):
         self.assertIsInstance(domainDict, dict)
