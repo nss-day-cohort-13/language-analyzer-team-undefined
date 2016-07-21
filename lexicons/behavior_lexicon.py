@@ -33,7 +33,7 @@ behaviorDict = {
     # Comparison
     ('similar', 'possible', 'many', 'new', 'little', 'widespread', 'last', 'much',
         'different', 'able', 'many', 'absurd', 'richest', 'best', 'least', 'greatest',
-        'increase', 'relationship', 'resemblance', 'semblance', 'likeness', 'relation', 'like', 'near', 'far', 'above', 'below', 'under', 'top', 'bottom', 'close', 'but'): 'comparison',
+        'increase', 'relationship', 'resemblance', 'semblance', 'likeness', 'relation', 'like', 'near', 'far', 'above', 'below', 'under', 'top', 'bottom', 'close', 'but', 'never', 'always'): 'comparison',
 
     # Spiritual
     ('spiritual', 'emotional', 'self-knowledge', 'personal', 'love', 'belief', 'soul',
