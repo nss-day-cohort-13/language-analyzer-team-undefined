@@ -23,7 +23,7 @@ class TestMessage(unittest.TestCase):
         message = main.Msg('a')
         text = "Main courses were good, but the desserts were too sweet."
         test_token = message.tokenize_text(text)
-        self.assertListEqual(test_token, ["Main", "courses", "were", "good", ",", "but", "the", "desserts", "were", "too", "sweet", "."])
+        self.assertListEqual(test_token, ["Main", "course", "were", "good", ",", "but", "the", "dessert", "were", "too", "sweet", "."])
         self.assertEqual(len(test_token), 12)
 
     def test_add_msg_behavior(self):
