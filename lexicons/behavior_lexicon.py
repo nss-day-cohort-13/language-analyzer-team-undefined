@@ -11,12 +11,12 @@ behaviorDict = {
 
     # Mentoring
     ('inspiring', 'respect', 'share', 'development', 'ability', 'opinion', 'role',
-        'teaching', 'coach', 'counsel', 'guide', 'instruct', 'edify', 'educate', 'explain', 'teach', 'tutor', 'aid', 'champion', 'help', 'sponsor'): 'mentoring',
+        'teaching', 'Steve', 'coach', 'counsel', 'guide', 'instruct', 'edify', 'educate', 'explain', 'teach', 'tutor', 'aid', 'champion', 'help', 'sponsor'): 'mentoring',
 
     # Inquisitive
     ('interest', 'psychological', 'sensible', 'truth', 'exploration', 'opinion',
         'evidence', 'intelligence', 'wonder', 'fact', 'mind', 'conclusion', 'study',
-        'interest', 'mind', 'meaning', 'assumption', 'idea', 'experiment', 'debate',
+        'interest', 'Ryan', 'mind', 'meaning', 'assumption', 'idea', 'experiment', 'debate',
         'thought', 'who', 'what', 'when', 'where', 'why', 'how', '?', 'analytical', 'nosy', 'investigate', 'scrutinize', 'pry', 'learn'): 'inquisitive',
 
     # Transaction
@@ -26,7 +26,7 @@ behaviorDict = {
         'relation', 'retrieve', 'validate', 'livelihood', 'action', 'bond', 'business', 'buying','contract', 'deal', 'enterprise', 'negotiation', 'purchase', 'sale', 'bargain', 'compact', 'convention', 'deed'): 'transaction',
 
     # Encouragement
-    ('funny', 'sweet', 'good', 'positive', 'great', 'happy', 'eager', 'greatest',
+    ('funny', 'sweet', 'good', 'positive', 'Charisse' 'great', 'happy', 'eager', 'greatest',
         'satisfied', 'respect', 'love', 'enthusiasm', 'positivity', 'confidence',
         'felicity', 'validate', 'cheer', 'backing', 'comfort', 'faith', 'inspiration', 'advocacy', 'aid', 'trust', 'hope', 'reassure', 'praise'): 'encouragement',
 
