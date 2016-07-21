@@ -15,7 +15,7 @@ class TestMessage(unittest.TestCase):
         self.assertIsInstance(message.sentiments, list)
 
         self.assertEqual(message.word_count, 12)
-        self.assertListEqual(message.words, ["Main", "courses", "were", "good", ",", "but", "the", "desserts", "were", "too", "sweet", "."])
+        self.assertListEqual(message.words, ["Main", "course", "were", "good", ",", "but", "the", "dessert", "were", "too", "sweet", "."])
 
     def test_tokenize_text(self):
         # new instance of class Msg created with arbitrary value 'a'
