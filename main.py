@@ -110,7 +110,7 @@ class Analyze:
                         resultDict[behaviorDict[key]] = 1
         for key in resultDict:
             resultList.append((key, round(resultDict[key] / denominator, 2)))
-        return reversed(sorted(resultList, key=lambda behavior: behavior[1]))
+        return list(reversed(sorted(resultList, key=lambda behavior: behavior[1])))
 
     def analyze_domain(self, word_list):
         '''
@@ -130,4 +130,4 @@ class Analyze:
                         resultDict[domainDict[key]] = 1
         for key in resultDict:
             resultList.append((key, round(resultDict[key] / denominator, 2)))
-        return reversed(sorted(resultList, key=lambda domain: domain[1]))
+        return list(reversed(sorted(resultList, key=lambda domain: domain[1])))

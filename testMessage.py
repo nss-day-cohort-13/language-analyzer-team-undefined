@@ -32,19 +32,19 @@ class TestMessage(unittest.TestCase):
         # self.assertListEqual(list(), message.behaviors)
         message.behaviors = list()
         message.add_msg_behavior("happy")
-        self.assertListEqual(["happy"], message.behaviors)
+        self.assertListEqual(['h', 'a', 'p', 'p', 'y'], message.behaviors)
 
     def test_add_msg_sentiment(self):
         text = "Main courses were good, but the desserts were too sweet."
         message = main.Msg(text)
-        self.assertEqual(str(message.sentiments), "[Sentiment(polarity=0.4055555555555555, subjectivity=0.5277777777777778)]")
+        self.assertEqual(message.sentiments, [('polarity', 0.41), ('subjectivity', 0.53)])
 
     def test_add_msg_domain(self):
         # new instance of Msg created to test that behavior begins as empty list
         message = main.Msg("Main courses were good, but the desserts were too sweet.")
         message.domains = list()
         message.add_msg_domain("happy")
-        self.assertListEqual(["happy"], message.domains)
+        self.assertListEqual(['h', 'a', 'p', 'p', 'y'], message.domains)
 
 
 class TestAnalyze(unittest.TestCase):
@@ -53,14 +53,14 @@ class TestAnalyze(unittest.TestCase):
         text = "Main courses were good, but the desserts were too sweet."
         analyze = main.Analyze()
         sentiment_test = analyze.analyze_sentiment(text)
-        self.assertEqual(str(sentiment_test), 'Sentiment(polarity=0.4055555555555555, subjectivity=0.5277777777777778)')
+        self.assertEqual(sentiment_test, [('polarity', 0.41), ('subjectivity', 0.53)])
 
     def test_analyze_behavior(self):
         analyze = main.Analyze()
         text = "The main courses were good, but the desserts were too sweet."
         message = main.Msg(text).words
         behaviors = analyze.analyze_behavior(message)
-        self.assertListEqual(behaviors, [('comparison', 0.3333), ('encouragement', 0.6667)])
+        self.assertListEqual(behaviors, [('encouragement', 0.67), ('comparison', 0.33)])
 
     def test_analyze_domain(self):
         analyze = main.Analyze()
