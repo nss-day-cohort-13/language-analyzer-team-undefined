@@ -1,11 +1,12 @@
+import re
 from textblob import TextBlob
+from textblob import Word
 from textblob.tokenizers import WordTokenizer
 from lexicons.behavior_lexicon import *
 from lexicons.domain_lexicon import *
 
 
 class Msg:
-
     '''
     Creating a new instance of Msg automatically parses the text and adds the sentiment, behavior
     and domain analysis to the text.
@@ -32,8 +33,12 @@ class Msg:
         '''
         Runs the text string through Text Blobs tokenizer updates the words list and word count
         '''
+        def lemmatize_word(word):
+            w = Word(word)
+            return w.lemmatize()
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
+        token = list(map(lemmatize_word, token))
         self.words = token
         self.word_count = len(token)
         return token
@@ -42,105 +47,87 @@ class Msg:
         '''
         adds the sentiment of the text to self.sentiments
         '''
-        self.sentiments.append(new_sentiment)
+        self.sentiments.extend(new_sentiment)
 
     def add_msg_behavior(self, new_behavior):
         '''
         adds the behavior of the text to self.behavior
         '''
-        self.behaviors.append(new_behavior)
+        self.behaviors.extend(new_behavior)
 
     def add_msg_domain(self, new_domain):
         '''
         adds the domain of the text to self.domain
         '''
-        self.domains.append(new_domain)
+        self.domains.extend(new_domain)
+
+    def output_analysis(self):
+        '''
+        outputs behavior domains and sentiment analyses
+        '''
+        print('\nSentiment:')
+        for tup in self.sentiments:
+            print("  {0}: {1}".format(tup[0], tup[1]))
+        print('\nDomain:')
+        for tup in self.domains:
+            print("  {0}: {1}".format(tup[0], tup[1]))
+        print('\nBehavior:')
+        for tup in self.behaviors:
+            print("  {0}: {1}".format(tup[0], tup[1]))
+        print('\n')
 
 
 class Analyze:
-
     '''
     Analyze and Msg have a composition relationship. This class holds the logic for returning the sentiment, behavior, and domain
     '''
-
     def analyze_sentiment(self, text):
         '''
         Runs text through Text blob's sentiment analysis
         '''
-        return TextBlob(text).sentiment
+        raw_sentiment = str(TextBlob(text).sentiment)
+        polarity = re.search('polarity=(.+?), ', raw_sentiment).group(1)
+        subjectivity = re.search('subjectivity=(.+?)\)', raw_sentiment).group(1)
+        polarity = round(float(polarity), 2)
+        subjectivity = round(float(subjectivity), 2)
+        return [('polarity', polarity), ('subjectivity', subjectivity)]
 
     def analyze_behavior(self, word_list):
-
         '''
         Query's behavior lexicon to find the behaviors exhibited in the text
         '''
-
         resultList = list()
-
-        # for word in word_list:
-        #     for key in behaviorDict:
-        #         if word in key:
-        #             resultList.append(behaviorDict[key])
-
         denominator = 0
-
         resultDict = dict()  # Make a temporary dictionary
-
         for word in word_list:
-
             for key in behaviorDict:  # test to see if a dictionary entry already exists
-
                 if word in key:  # if word is found in the key
-
                     denominator += 1
-
                     # if word exists, update the dictionary to show another occurance of it.
                     if (behaviorDict[key] in resultDict):
                         resultDict[behaviorDict[key]] += 1
-
                     else:  # if not create one
                         resultDict[behaviorDict[key]] = 1
-                        # print(resultDict[behaviorDict[key]])
-
         for key in resultDict:
-            resultList.append((key, round(resultDict[key] / denominator, 4)))
-
-        return resultList
+            resultList.append((key, round(resultDict[key] / denominator, 2)))
+        return reversed(sorted(resultList, key=lambda behavior: behavior[1]))
 
     def analyze_domain(self, word_list):
-
         '''
         Query's domain lexicon to find the domains exhibited in the text
         '''
-
         resultList = list()
-
         denominator = 0
-
         resultDict = dict()  # Make a temporary dictionary
-
         for word in word_list:
-
             for key in domainDict:  # test to see if a dictionary entry already exists
-
                 if word in key:  # if word is found in the key
-
                     denominator += 1
-
                     # if word exists, update the dictionary to show another occurance of it.
                     if (domainDict[key] in resultDict):
                         resultDict[domainDict[key]] += 1
-
                     else:  # if not create one
                         resultDict[domainDict[key]] = 1
-                        # print(resultDict[behaviorDict[key]])
-
         for key in resultDict:
-            resultList.append((key, round(resultDict[key] / denominator, 4)))
-
-        # for word in word_list:
-        #     for key in domainDict:
-        #         if word in key:
-        #             resultList.append(domainDict[key])
-
-        return resultList
+            resultList.append((key, round(resultDict[key] / denominator, 2)))
+        return reversed(sorted(resultList, key=lambda domain: domain[1]))
