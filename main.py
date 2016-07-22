@@ -45,14 +45,13 @@ class Msg:
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
         # capture stopwords
-        filtered_words = [word.lower() for word in token if word not in stopwords.words('english')]
-        # print("############################################")
-        # print(filtered_words)
-        # token = list(map(lemmatize_word, token))
-        
+        filtered_words = [word.lower() for word in token if word not in stopwords.words('english')] 
         self.words = token
         self.word_count = len(token)
         return token
+        # self.words = filtered_words
+        # self.word_count = len(filtered_words)
+        # return token
 
     def add_msg_sentiment(self, new_sentiment):
         '''
