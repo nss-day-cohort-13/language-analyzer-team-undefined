@@ -12,7 +12,7 @@ def runner():
         user_input = open(file_path, 'r').read()
         # user_input = file.read()
     else:
-        usr_input = input("Please enter behavior search string: ")
+        user_input = input("Please enter behavior search string: ")
 
     message = Msg(user_input)
     message.initialize()
