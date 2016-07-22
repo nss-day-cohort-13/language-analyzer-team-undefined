@@ -34,15 +34,21 @@ class Msg:
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
         token = list(map(lemmatize_word, token))
+        count = len(token)
+        return token
+
+    def add_msg_words(self, token):
+        '''
+        adds tokenized words list to self.words, and adds the length of self.words to self.word_count
+        '''
         self.words = token
         self.word_count = len(token)
-        return token
 
     def add_msg_sentiment(self, new_sentiment):
         '''
         adds the sentiment of the text to self.sentiments
         '''
-        self.sentiments.extend(new_sentiment)
+        self.sentiments = new_sentiment
 
     def add_msg_behavior(self, new_behavior):
         '''
@@ -56,9 +62,15 @@ class Msg:
         '''
         self.domains.extend(new_domain)
 
+    def add_msg_analysis(self, new_analysis):
+        '''
+        adds text analysis output to self.analysis
+        '''
+        self.analysis = new_analysis
+
     def create_analysis_output(self):
         '''
-        outputs behavior domains and sentiment analyses
+        outputs behavior domains and sentiment analysis
         '''
         output = str()
         output += '\nSentiment:'
