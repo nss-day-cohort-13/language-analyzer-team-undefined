@@ -11,27 +11,22 @@ class Msg:
     Creating a new instance of Msg automatically parses the text and adds the sentiment, behavior
     and domain analysis to the text.
     '''
-
     def __init__(self, text):
         '''
         Initializes variables on creation of Msg and runs the functions to populate those variables
         '''
-        self.text = text
-        self.words = None
         self.word_count = 0
+        self.text = text
+        self.words = list()
         self.sentiments = list()
         self.behaviors = list()
         self.domains = list()
+        self.analysis = str
         self.analyze = Analyze()
-
-        self.tokenize_text(self.text)
-        self.add_msg_sentiment(self.analyze.analyze_sentiment(self.text))
-        self.add_msg_behavior(self.analyze.analyze_behavior(self.words))
-        self.add_msg_domain(self.analyze.analyze_domain(self.words))
 
     def tokenize_text(self, block):
         '''
-        Runs the text string through Text Blobs tokenizer updates the words list and word count
+        Runs the text string through Text Blobs tokenizer/lemmatizer
         '''
         def lemmatize_word(word):
             w = Word(word)
@@ -39,15 +34,21 @@ class Msg:
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
         token = list(map(lemmatize_word, token))
+        count = len(token)
+        return token
+
+    def add_msg_words(self, token):
+        '''
+        adds tokenized words list to self.words, and adds the length of self.words to self.word_count
+        '''
         self.words = token
         self.word_count = len(token)
-        return token
 
     def add_msg_sentiment(self, new_sentiment):
         '''
         adds the sentiment of the text to self.sentiments
         '''
-        self.sentiments.extend(new_sentiment)
+        self.sentiments = new_sentiment
 
     def add_msg_behavior(self, new_behavior):
         '''
@@ -61,9 +62,15 @@ class Msg:
         '''
         self.domains.extend(new_domain)
 
+    def add_msg_analysis(self, new_analysis):
+        '''
+        adds text analysis output to self.analysis
+        '''
+        self.analysis = new_analysis
+
     def create_analysis_output(self):
         '''
-        outputs behavior domains and sentiment analyses
+        outputs behavior domains and sentiment analysis
         '''
         output = str()
         output += '\nSentiment:'
@@ -80,9 +87,17 @@ class Msg:
         output += '\n'
         return(output)
 
+    def initialize(self):
+        self.add_msg_words(self.tokenize_text(self.text))
+        self.add_msg_sentiment(self.analyze.analyze_sentiment(self.text))
+        self.add_msg_behavior(self.analyze.analyze_behavior(self.words))
+        self.add_msg_domain(self.analyze.analyze_domain(self.words))
+        self.add_msg_analysis(self.create_analysis_output())
+
 class Analyze:
     '''
-    Analyze and Msg have a composition relationship. This class holds the logic for returning the sentiment, behavior, and domain
+    Analyze and Msg have a composition relationship.
+    This class holds the logic for returning the sentiment, behavior, and domain
     '''
     def analyze_sentiment(self, text):
         '''
