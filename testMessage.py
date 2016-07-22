@@ -29,14 +29,14 @@ class TestMessage(unittest.TestCase):
     def test_tokenize_text(self):
         text = 'The main courses were good, but the desserts were too sweet.'
         test_token = self.message.tokenize_text(text)
-        self.assertListEqual(test_token, ['The', 'main', 'course', 'were',
-        'good', ',', 'but', 'the', 'dessert', 'were', 'too', 'sweet', '.'])
-        self.assertEqual(len(test_token), 13)
+        self.assertListEqual(test_token, ['the', 'main', 'course',
+        'good', ',', 'dessert', 'sweet', '.'])
+        self.assertEqual(len(test_token), 8)
 
     def test_add_msg_words(self):
         # new instance of class Msg created with arbitrary value 'a'
         message = main.Msg('a')
-        test_words = ['The', 'main', 'course', 'were', 'good', ',', 'but',
+        test_words = ['the', 'main', 'course', 'were', 'good', ',', 'but',
         'the', 'dessert', 'were', 'too', 'sweet', '.']
         message.add_msg_words(test_words)
         self.assertEqual(test_words, message.words)
@@ -79,8 +79,7 @@ class TestMessage(unittest.TestCase):
         '\n  behavioral: 1.0' +
         '\n' +
         '\nBehavior:' +
-        '\n  encouragement: 0.67' +
-        '\n  comparison: 0.33' +
+        '\n  encouragement: 1.0' +
         '\n')
         msg_analysis_output = self.message.create_analysis_output()
         self.assertEqual(expected_output, msg_analysis_output)
@@ -101,7 +100,7 @@ class TestAnalyze(unittest.TestCase):
         message.add_msg_words(message.tokenize_text(message.text))
         analyze = main.Analyze()
         behaviors = analyze.analyze_behavior(message.words)
-        self.assertListEqual(behaviors, [('encouragement', 0.67), ('comparison', 0.33)])
+        self.assertListEqual(behaviors, [('encouragement', 1.0)])
 
     def test_analyze_domain(self):
         text = 'The main courses were good, but the desserts were too sweet.'
