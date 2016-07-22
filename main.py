@@ -1,9 +1,15 @@
 import re
+from threading import *
 from textblob import TextBlob
 from textblob import Word
 from textblob.tokenizers import WordTokenizer
+from nltk.corpus import stopwords
+# import nltk
+# nltk.download("stopwords")
+# from multiprocessing import Pool
 from lexicons.behavior_lexicon import *
 from lexicons.domain_lexicon import *
+
 
 
 class Msg:
@@ -24,18 +30,24 @@ class Msg:
         self.analysis = str
         self.analyze = Analyze()
 
+
     def tokenize_text(self, block):
         '''
         Runs the text string through Text Blobs tokenizer/lemmatizer
         '''
         def lemmatize_word(word):
             w = Word(word)
-            return w.lemmatize()
+            return w.lemmatize().lower()
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
-        token = list(map(lemmatize_word, token))
-        count = len(token)
-        return token
+        filtered_words = [word for word in token if word not in stopwords.words('english')]
+        results = list(map(lemmatize_word, filtered_words))
+        print(results)
+        # pool = Pool(5)
+        # results = pool.map(self.lemmatize_word, token)
+        # pool.close()
+        # pool.join()
+        return results
 
     def add_msg_words(self, token):
         '''
@@ -88,6 +100,9 @@ class Msg:
         return(output)
 
     def initialize(self):
+        '''
+        Runs all tokenize/analysis methods and adds property values to self
+        '''
         self.add_msg_words(self.tokenize_text(self.text))
         self.add_msg_sentiment(self.analyze.analyze_sentiment(self.text))
         self.add_msg_behavior(self.analyze.analyze_behavior(self.words))
