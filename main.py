@@ -42,7 +42,6 @@ class Msg:
         token = tokenizer.tokenize(block)
         filtered_words = [word for word in token if word not in stopwords.words('english')]
         results = list(map(lemmatize_word, filtered_words))
-        print(results)
         # pool = Pool(5)
         # results = pool.map(self.lemmatize_word, token)
         # pool.close()
