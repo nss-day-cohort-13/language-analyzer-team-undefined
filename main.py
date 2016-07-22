@@ -72,21 +72,24 @@ class Msg:
         '''
         self.domains.extend(new_domain)
 
-    def output_analysis(self):
+    def create_analysis_output(self):
         '''
         outputs behavior domains and sentiment analyses
         '''
-        print('\nSentiment:')
+        output = str()
+        output += '\nSentiment:'
         for tup in self.sentiments:
-            print("  {0}: {1}".format(tup[0], tup[1]))
-        print('\nDomain:')
+            output += "\n  {0}: {1}".format(tup[0], tup[1])
+        output += '\n'
+        output += ('\nDomain:')
         for tup in self.domains:
-            print("  {0}: {1}".format(tup[0], tup[1]))
-        print('\nBehavior:')
+            output += "\n  {0}: {1}".format(tup[0], tup[1])
+        output += '\n'
+        output += '\nBehavior:'
         for tup in self.behaviors:
-            print("  {0}: {1}".format(tup[0], tup[1]))
-        print('\n')
-
+            output += "\n  {0}: {1}".format(tup[0], tup[1])
+        output += '\n'
+        return(output)
 
 class Analyze:
     '''

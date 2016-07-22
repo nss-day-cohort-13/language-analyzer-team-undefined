@@ -1,5 +1,6 @@
 import unittest
 import main
+import sys
 import textblob
 from lexicons.behavior_lexicon import behaviorDict
 from lexicons.domain_lexicon import domainDict
@@ -19,7 +20,6 @@ class TestMessage(unittest.TestCase):
 
     def test_tokenize_text(self):
         # new instance of class Msg created with arbitrary value 'a'
-        # to test the functionality of its tokenize_text method
         message = main.Msg('a')
         text = "Main courses were good, but the desserts were too sweet."
         test_token = message.tokenize_text(text)
@@ -46,6 +46,22 @@ class TestMessage(unittest.TestCase):
         message.add_msg_domain("happy")
         self.assertListEqual(['h', 'a', 'p', 'p', 'y'], message.domains)
 
+    def test_create_analysis_output(self):
+        message = main.Msg("Main courses were good, but the desserts were too sweet.")
+        test_var = str()
+        test_var += '\nSentiment:'
+        test_var += '\n  polarity: 0.41'
+        test_var += '\n  subjectivity: 0.53'
+        test_var += '\n'
+        test_var += '\nDomain:'
+        test_var += '\n  behavioral: 1.0'
+        test_var += '\n'
+        test_var += '\nBehavior:'
+        test_var += '\n  encouragement: 0.67'
+        test_var += '\n  comparison: 0.33'
+        test_var += '\n'
+        msg_analysis_output = message.create_analysis_output()
+        self.assertEqual(test_var, msg_analysis_output)
 
 class TestAnalyze(unittest.TestCase):
 
