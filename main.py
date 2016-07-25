@@ -3,18 +3,13 @@ from threading import *
 from textblob import TextBlob
 from textblob import Word
 from textblob.tokenizers import WordTokenizer
-from nltk.corpus import stopwords
-import nltk
-nltk.download("stopwords")
 from multiprocessing import Pool
 from lexicons.behavior_lexicon import *
 from lexicons.domain_lexicon import *
-from stopwords import ignoredwords
-# import nltk
-# nltk.download("stopwords")
-# from nltk.corpus import stopwords
-# nltk.download()
-# import stopwords # used for ripping out words we wont use
+from stopwords import ignoredwords # used for ripping out words we wont use
+
+
+
 
 
 
@@ -47,17 +42,8 @@ class Msg:
             return w.lemmatize().lower()
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
-<<<<<<< HEAD
-        # capture stopwords
-        filtered_words = [word.lower() for word in token if word not in ignoredwords] 
-        self.words = token
-        self.word_count = len(token)
-        return token
-        # self.words = filtered_words
-        # self.word_count = len(filtered_words)
-        # return token
-=======
-        filtered_words = [word for word in token if word not in stopwords.words('english')]
+
+        filtered_words = [word.lower() for word in token if word not in ignoredwords]
         results = list(map(lemmatize_word, filtered_words))
         # pool = Pool(5)
         # results = pool.map(self.lemmatize_word, token)
@@ -71,7 +57,6 @@ class Msg:
         '''
         self.words = token
         self.word_count = len(token)
->>>>>>> 2545c48f8c323560a8e4a7e9297f07850116a8ed
 
     def add_msg_sentiment(self, new_sentiment):
         '''
