@@ -1,5 +1,7 @@
 # Team Undefined - Python Text Analyzer
 CLI-based text analyzer for Python 3, which makes use of Python's Natural Language Tool Kit (NLTK) framework via the TextBlob architecture.
+
+
 ![Alt text](http://i.imgur.com/iuCU01F.png)
 
 # Installation
