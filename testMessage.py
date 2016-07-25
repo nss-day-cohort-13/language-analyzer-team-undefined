@@ -1,88 +1,113 @@
-import unittest
 import main
-import sys
+import unittest
 import textblob
 from lexicons.behavior_lexicon import behaviorDict
 from lexicons.domain_lexicon import domainDict
 
+
 class TestMessage(unittest.TestCase):
 
+    @classmethod
+    def setUpClass(self):
+        text = 'The main courses were good, but the desserts were too sweet.'
+        self.message = main.Msg(text)
+        self.message.initialize()
+
     def test_initial_message_values(self):
-        text = "Main courses were good, but the desserts were too sweet."
+        text = 'The main courses were good, but the desserts were too sweet.'
         message = main.Msg(text)
-
-        self.assertIsInstance(message.domains, list)
-        self.assertIsInstance(message.behaviors, list)
-        self.assertIsInstance(message.sentiments, list)
-
-        self.assertEqual(message.word_count, 12)
-        self.assertListEqual(message.words, ["Main", "course", "were", "good", ",", "but", "the", "dessert", "were", "too", "sweet", "."])
+        self.assertEqual(message.word_count, 0)
+        self.assertEqual(message.text, 'The main courses were good, but the ' +
+        'desserts were too sweet.')
+        self.assertListEqual(message.words, list())
+        self.assertListEqual(message.sentiments, list())
+        self.assertListEqual(message.behaviors, list())
+        self.assertListEqual(message.domains, list())
+        self.assertEqual(message.analysis, str)
+        self.assertIsInstance(message.analyze, main.Analyze().__class__)
 
     def test_tokenize_text(self):
+        text = 'The main courses were good, but the desserts were too sweet.'
+        test_token = self.message.tokenize_text(text)
+        self.assertListEqual(test_token, ['the', 'main', 'course',
+        'good', ',', 'dessert', 'sweet', '.'])
+        self.assertEqual(len(test_token), 8)
+
+    def test_add_msg_words(self):
         # new instance of class Msg created with arbitrary value 'a'
         message = main.Msg('a')
-        text = "Main courses were good, but the desserts were too sweet."
-        test_token = message.tokenize_text(text)
-        self.assertListEqual(test_token, ["Main", "course", "were", "good", ",", "but", "the", "dessert", "were", "too", "sweet", "."])
-        self.assertEqual(len(test_token), 12)
+        test_words = ['the', 'main', 'course', 'were', 'good', ',', 'but',
+        'the', 'dessert', 'were', 'too', 'sweet', '.']
+        message.add_msg_words(test_words)
+        self.assertEqual(test_words, message.words)
+        self.assertEqual(len(test_words), message.word_count)
 
     def test_add_msg_behavior(self):
-        # new instance of Msg created to test that behavior begins as empty list
-        message = main.Msg("Main courses were good, but the desserts were too sweet.")
-        # self.assertListEqual(list(), message.behaviors)
-        message.behaviors = list()
-        message.add_msg_behavior("happy")
-        self.assertListEqual(['h', 'a', 'p', 'p', 'y'], message.behaviors)
+        # new instance of class Msg created with arbitrary value 'a'
+        message = main.Msg('a')
+        test_behaviors = ['cautious', 'hopeful', 'prone']
+        message.add_msg_behavior(test_behaviors)
+        self.assertListEqual(['cautious', 'hopeful', 'prone'], message.behaviors)
 
     def test_add_msg_sentiment(self):
-        text = "Main courses were good, but the desserts were too sweet."
-        message = main.Msg(text)
-        self.assertEqual(message.sentiments, [('polarity', 0.41), ('subjectivity', 0.53)])
+        # new instance of class Msg created with arbitrary value 'a'
+        message = main.Msg('a')
+        test_sentiments = [('polarity', 0.41), ('subjectivity', 0.53)]
+        message.add_msg_sentiment(test_sentiments)
+        self.assertEqual(test_sentiments, message.sentiments)
 
     def test_add_msg_domain(self):
-        # new instance of Msg created to test that behavior begins as empty list
-        message = main.Msg("Main courses were good, but the desserts were too sweet.")
-        message.domains = list()
-        message.add_msg_domain("happy")
-        self.assertListEqual(['h', 'a', 'p', 'p', 'y'], message.domains)
+        # new instance of class Msg created with arbitrary value 'a'
+        message = main.Msg('a')
+        test_domains = ['date', 'day', 'time']
+        message.add_msg_domain(test_domains)
+        self.assertListEqual(['date', 'day', 'time'], message.domains)
+
+    def test_add_msg_analysis(self):
+        # new instance of class Msg created with arbitrary value 'a'
+        message = main.Msg('a')
+        test_analysis = 'this is a test analysis'
+        message.add_msg_analysis(test_analysis)
+        self.assertEqual(test_analysis, message.analysis)
 
     def test_create_analysis_output(self):
-        message = main.Msg("Main courses were good, but the desserts were too sweet.")
-        test_var = str()
-        test_var += '\nSentiment:'
-        test_var += '\n  polarity: 0.41'
-        test_var += '\n  subjectivity: 0.53'
-        test_var += '\n'
-        test_var += '\nDomain:'
-        test_var += '\n  behavioral: 1.0'
-        test_var += '\n'
-        test_var += '\nBehavior:'
-        test_var += '\n  encouragement: 0.67'
-        test_var += '\n  comparison: 0.33'
-        test_var += '\n'
-        msg_analysis_output = message.create_analysis_output()
-        self.assertEqual(test_var, msg_analysis_output)
+        expected_output = ('\nSentiment:' +
+        '\n  polarity: 0.41' +
+        '\n  subjectivity: 0.53' +
+        '\n' +
+        '\nDomain:' +
+        '\n  behavioral: 1.0' +
+        '\n' +
+        '\nBehavior:' +
+        '\n  encouragement: 1.0' +
+        '\n')
+        msg_analysis_output = self.message.create_analysis_output()
+        self.assertEqual(expected_output, msg_analysis_output)
+
 
 class TestAnalyze(unittest.TestCase):
 
     def test_analyze_sentiment(self):
-        text = "Main courses were good, but the desserts were too sweet."
+        text = 'The main courses were good, but the desserts were too sweet.'
+        message = main.Msg(text)
         analyze = main.Analyze()
-        sentiment_test = analyze.analyze_sentiment(text)
-        self.assertEqual(sentiment_test, [('polarity', 0.41), ('subjectivity', 0.53)])
+        sentiments = analyze.analyze_sentiment(message.text)
+        self.assertEqual(sentiments, [('polarity', 0.41), ('subjectivity', 0.53)])
 
     def test_analyze_behavior(self):
+        text = 'The main courses were good, but the desserts were too sweet.'
+        message = main.Msg(text)
+        message.add_msg_words(message.tokenize_text(message.text))
         analyze = main.Analyze()
-        text = "The main courses were good, but the desserts were too sweet."
-        message = main.Msg(text).words
-        behaviors = analyze.analyze_behavior(message)
-        self.assertListEqual(behaviors, [('encouragement', 0.67), ('comparison', 0.33)])
+        behaviors = analyze.analyze_behavior(message.words)
+        self.assertListEqual(behaviors, [('encouragement', 1.0)])
 
     def test_analyze_domain(self):
+        text = 'The main courses were good, but the desserts were too sweet.'
+        message = main.Msg(text)
+        message.add_msg_words(message.tokenize_text(message.text))
         analyze = main.Analyze()
-        text = "The main courses were good, but the desserts were too sweet."
-        message = main.Msg(text).words
-        domains = analyze.analyze_domain(message)
+        domains = analyze.analyze_domain(message.words)
         self.assertListEqual(domains, [('behavioral', 1.0)])
 
 
@@ -92,22 +117,33 @@ class TestLexicons(unittest.TestCase):
         self.assertIsInstance(behaviorDict, dict)
 
     def test_behaviorDict_contains_key(self):
-        self.assertIn(('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic', 'wish'), behaviorDict)
+        self.assertIn(('cautious', 'hopeful', 'prone', 'fearful', 'scared',
+        'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle',
+        'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive',
+        'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive',
+        'indifferent', 'languid', 'stoic', 'apathetic',
+        'wish'), behaviorDict)
 
     def test_behaviorDict_contains_value(self):
-        self.assertEqual(behaviorDict[('cautious', 'hopeful', 'prone', 'fearful', 'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat', 'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive', 'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive', 'indifferent', 'languid', 'stoic', 'apathetic', 'wish')], 'passive')
+        self.assertEqual(behaviorDict[('cautious', 'hopeful', 'prone', 'fearful',
+        'scared', 'fear', 'blessing', 'quiet', 'static', 'uninvolved', 'flat',
+        'idle', 'patient', 'compliant', 'docile', 'inert', 'latent', 'receptive',
+        'resigned', 'stolid', 'Hannah', 'submissive', 'tractable', 'unassertive',
+        'indifferent','languid', 'stoic', 'apathetic', 'wish')], 'passive')
 
     def test_domainDict_is_dictionary(self):
         self.assertIsInstance(domainDict, dict)
 
     def test_domainDict_contains_key(self):
-        self.assertIn(('date', 'day', 'time', 'minute', 'today', 'night', 'moment', 'year', 'calender',
-            'clock', 'hour', 'noon', 'midnight', 'afternoon', 'tonight', 'tomorrow',
-            'morning', 'week', 'month'), domainDict)
+        self.assertIn(('date', 'day', 'time', 'minute', 'today', 'night', 'moment',
+        'year', 'calender', 'clock', 'hour', 'noon', 'midnight', 'afternoon',
+        'tonight', 'tomorrow', 'morning', 'week', 'month'), domainDict)
 
     def test_domainDict_contains_value(self):
-        self.assertEqual(domainDict[('date', 'day', 'time', 'minute', 'today', 'night', 'moment', 'year', 'calender', 'clock', 'hour', 'noon', 'midnight', 'afternoon', 'tonight', 'tomorrow',
-            'morning', 'week', 'month')], "time")
+        self.assertEqual(domainDict[('date', 'day', 'time', 'minute', 'today',
+        'night', 'moment', 'year', 'calender', 'clock', 'hour', 'noon',
+        'midnight', 'afternoon', 'tonight', 'tomorrow', 'morning', 'week',
+        'month')], 'time')
 
 
 if __name__ == '__main__':
