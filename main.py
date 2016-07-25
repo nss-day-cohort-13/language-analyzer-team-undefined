@@ -4,9 +4,10 @@ from textblob import Word
 from textblob.tokenizers import WordTokenizer
 from lexicons.behavior_lexicon import *
 from lexicons.domain_lexicon import *
+from stopwords import ignoredwords
 # import nltk
 # nltk.download("stopwords")
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 # nltk.download()
 # import stopwords # used for ripping out words we wont use
 
@@ -45,7 +46,7 @@ class Msg:
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
         # capture stopwords
-        filtered_words = [word.lower() for word in token if word not in stopwords.words('english')] 
+        filtered_words = [word.lower() for word in token if word not in ignoredwords] 
         self.words = token
         self.word_count = len(token)
         return token
