@@ -4,9 +4,9 @@ from textblob import TextBlob
 from textblob import Word
 from textblob.tokenizers import WordTokenizer
 from nltk.corpus import stopwords
-# import nltk
-# nltk.download("stopwords")
-# from multiprocessing import Pool
+import nltk
+nltk.download("stopwords")
+from multiprocessing import Pool
 from lexicons.behavior_lexicon import *
 from lexicons.domain_lexicon import *
 

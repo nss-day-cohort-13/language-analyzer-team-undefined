@@ -1,3 +1,35 @@
+# Team Undefined - Python Text Analyzer
+CLI-based text analyzer for Python 3, which makes use of Python's Natural Language Tool Kit (NLTK) framework via the TextBlob architecture.
+![Alt text](http://i.imgur.com/iuCU01F.png)
+
+# Installation
+To install the Python Text Analyzer...
+  - Clone the repository using this URL ```https://github.com/nss-day-cohort-13/language-analyzer-team-undefined```
+  - Next run ```$ pip install -u textblob``` &  ```$ python -m textblob.download_corpora``` in your command line
+
+
+# Usage
+In your cammand line, navigate to the project's main folder...
+   - ```python runner.py```
+   - When prompted, enter the text you wish to analyse
+   - To analyse text from a file, you can give an optional -p argument. For example, ```python runner.py -p file.txt```
+
+# Team Undefined
+### Members (on GitHub):
+[Sulaiman Allen](https://github.com/sulaiman-allen)
+
+[Hannah Hall](https://github.com/hannahhall)
+
+[Patrick Howell](https://github.com/pbhowelljr)
+
+[Russell Ries](https://github.com/RussellRiesJr)
+
+# License
+MIT
+
+
+
+
 # Language Analyzer Group Project
 
 ## Information
@@ -22,14 +54,14 @@ The language analyzer is the main module that will use sentiment analysis, and b
 
 Message: "Suzy sells seashells by the seashore"
 
-Sentiment: 
+Sentiment:
     0.52 (Positive)
 
-Behavior(s): 
+Behavior(s):
     0.58 (Aggressive)
     0.88 (Transaction)
 
-Domain(s): 
+Domain(s):
     0.925 (Financial)
 ```
 
