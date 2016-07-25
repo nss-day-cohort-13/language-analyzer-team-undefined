@@ -3,13 +3,10 @@ from threading import *
 from textblob import TextBlob
 from textblob import Word
 from textblob.tokenizers import WordTokenizer
-from nltk.corpus import stopwords
-import nltk
-nltk.download("stopwords")
 from multiprocessing import Pool
 from lexicons.behavior_lexicon import *
 from lexicons.domain_lexicon import *
-
+from stopwords import ignoredwords # used for ripping out words we wont use
 
 
 class Msg:
@@ -40,7 +37,8 @@ class Msg:
             return w.lemmatize().lower()
         tokenizer = WordTokenizer()
         token = tokenizer.tokenize(block)
-        filtered_words = [word for word in token if word not in stopwords.words('english')]
+
+        filtered_words = [word.lower() for word in token if word not in ignoredwords]
         results = list(map(lemmatize_word, filtered_words))
         # pool = Pool(5)
         # results = pool.map(self.lemmatize_word, token)
